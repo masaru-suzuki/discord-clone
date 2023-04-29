@@ -6,14 +6,18 @@ import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SidebarChannel from './SidebarChannel';
+import { login } from '../features/usersSlice';
+import { useDispatch } from 'react-redux';
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="sidebar">
       {/* sidebarLeft */}
       <div className="sidebarLeft">
-        <div className="serverIcon">
-          <img src="/logo192.png" alt="" />
+        <div className="serverIcon -nobg">
+          <img src="/discordIcon.png" alt="" />
         </div>
         <div className="serverIcon">
           <img src="/logo192.png" alt="" />
