@@ -2,10 +2,10 @@ import React from 'react';
 import './Sidebar.scss';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
-import SidebarChannel from './SidebarChannel';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import SettingsIcon from '@mui/icons-material/Settings';
+import SidebarChannel from './SidebarChannel';
 
 const Sidebar = () => {
   return (

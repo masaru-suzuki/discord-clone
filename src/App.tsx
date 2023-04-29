@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.scss';
-import Sidebar from './Sidebar';
+import Sidebar from './sidebar/Sidebar';
 
 function App() {
   return (
     <div className="App">
       {/* sidebar */}
       <Sidebar />
-      {/* home */}
+      {/* chat */}
     </div>
   );
 }
