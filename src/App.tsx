@@ -14,7 +14,9 @@ function App() {
         <>
           {' '}
           {/* sidebar */}
-          <Sidebar />
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <Sidebar />
+          </ErrorBoundary>
           {/* chat */}
           <Chat />
         </>
