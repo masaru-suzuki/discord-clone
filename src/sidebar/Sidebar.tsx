@@ -6,7 +6,7 @@ import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SidebarChannel from './SidebarChannel';
-import { login } from '../features/usersSlice';
+import { login } from '../features/userSlice';
 import { useDispatch } from 'react-redux';
 
 const Sidebar = () => {

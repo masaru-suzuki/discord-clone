@@ -2,14 +2,27 @@ import React from 'react';
 import './App.scss';
 import Sidebar from './sidebar/Sidebar';
 import Chat from './chat/Chat';
+import Login from './login/Login';
+import { useAppSelector } from './app/hooks';
 
 function App() {
+  const user = useAppSelector((state) => state.user.user);
+
   return (
     <div className="App">
-      {/* sidebar */}
-      <Sidebar />
-      {/* chat */}
-      <Chat />
+      {user ? (
+        <>
+          {' '}
+          {/* sidebar */}
+          <Sidebar />
+          {/* chat */}
+          <Chat />
+        </>
+      ) : (
+        <>
+          <Login />
+        </>
+      )}
     </div>
   );
 }
