@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './Sidebar.scss';
+import { Channel } from '../Types';
 
-const SidebarChannel = () => {
+const SidebarChannel: FC<Channel> = ({ id, channelName }) => {
   return (
     <div className="sidebarChannel">
       <h4>
-        <span className="sidebarChannelHash">#</span>Udemy
+        <span className="sidebarChannelHash">#</span>
+        {channelName}
       </h4>
     </div>
   );
