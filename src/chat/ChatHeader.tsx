@@ -6,13 +6,17 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import SearchIcon from '@mui/icons-material/Search';
 import SendIcon from '@mui/icons-material/Send';
 import HelpIcon from '@mui/icons-material/Help';
+import { useAppSelector } from '../app/hooks';
 
 const ChatHeader = () => {
+  const channelName = useAppSelector((state) => state.channel.channelName);
+
   return (
     <div className="ChatHeader">
       <div className="chatHeaderLeft">
         <h3>
-          <span className="chatHeaderHash">#</span>Udemy
+          <span className="chatHeaderHash">#</span>
+          {channelName}
         </h3>
       </div>
       <div className="chatHeaderRight">

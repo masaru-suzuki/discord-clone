@@ -8,6 +8,6 @@ export interface InitialUserState {
 }
 
 export interface Channel {
-  id: string;
-  channelName: string;
+  id: string | null;
+  channelName: string | null;
 }
