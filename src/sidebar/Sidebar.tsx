@@ -5,15 +5,32 @@ import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import SettingsIcon from '@mui/icons-material/Settings';
 import SidebarChannel from './SidebarChannel';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 import { useAppSelector } from '../app/hooks';
 import useCollection from '../hooks/useCollection';
+import { addDoc, collection } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 
 const Sidebar = () => {
   const user = useAppSelector((state) => state.user.user!);
+  const [channelStateChange, setChannelStateChange] = useState(false);
+  // const [channels, setChannels] = useState(null);
+
   const { displayName, uid, photoURL } = user;
+
   // TODO: この書き方参考にする
   const { documents: channels } = useCollection('channels');
+
+  const addChannel = async () => {
+    const channelName: string | null = prompt('チャンネル名を入力してください');
+
+    if (channelName) {
+      await addDoc(collection(db, 'channels'), { channelName });
+      setChannelStateChange(true);
+    }
+  };
+
+  useEffect(() => {}, [channelStateChange]);
 
   return (
     <div className="sidebar">
@@ -39,7 +56,7 @@ const Sidebar = () => {
               <ExpandMoreIcon />
               <h4>プログラミングチャンネル</h4>
             </div>
-            <AddIcon className="sidebarAddIcon" />
+            <AddIcon className="sidebarAddIcon" onClick={addChannel} />
           </div>
           <div className="sidebarChannelList">
             {channels.map((channel) => (

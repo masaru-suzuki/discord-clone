@@ -1,4 +1,4 @@
-import { collection, getDocs } from 'firebase/firestore';
+import { CollectionReference, DocumentData, collection, getDocs, onSnapshot } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { Channel } from '../Types';
 import { db } from '../firebase';
@@ -7,26 +7,18 @@ import { db } from '../firebase';
 const useCollection = (data: string) => {
   const [documents, setDocuments] = useState<Channel[]>([]);
 
-  // firestoreから'channels'コレクションを非同期で取得する
-  const fetchDBDocuments = async () => {
-    const channelCollection = collection(db, data);
-    const response = await getDocs(channelCollection);
-    const dbDocs = response.docs.map((doc) => {
-      const channelResult: Channel = {
-        id: doc.id,
-        channelName: doc.data().channelName,
-      };
-      return channelResult;
-    });
-    return dbDocs;
-  };
-
   useEffect(() => {
-    (async () => {
-      const dbDocs = await fetchDBDocuments();
-      setDocuments(dbDocs);
-    })();
-  }, []);
+    let collectionRef: CollectionReference<DocumentData> = collection(db, data);
+
+    // onSnapshotにしないと、即時更新されない！！！
+    onSnapshot(collectionRef, (snapshot) => {
+      let results: Channel[] = [];
+      snapshot.docs.forEach((doc) => {
+        results.push({ id: doc.id, channelName: doc.data().channelName });
+      });
+      setDocuments(results);
+    });
+  }, [data]);
 
   return { documents };
 };
