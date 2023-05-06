@@ -1,16 +1,18 @@
-import React from 'react';
+import { FC } from 'react';
 import './ChatMessage.scss';
 import { Avatar } from '@mui/material';
+import { Message } from '../Types';
 
-const ChatMessage = () => {
+const ChatMessage: FC<Message> = ({ timestamp, message, user }) => {
   return (
     <div className="message">
-      <Avatar />
+      <Avatar src={user?.photoURL} />
       <div className="messageInfo">
         <h4>
-          Masaru Suzuki<span className="messageTimestamp">2023/04/30</span>
+          {user?.displayName}
+          <span className="messageTimestamp">{new Date(timestamp?.toDate()).toLocaleDateString()}</span>
         </h4>
-        <p>メッセージ本文</p>
+        <p>{message}</p>
       </div>
     </div>
   );

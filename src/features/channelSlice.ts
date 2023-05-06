@@ -11,10 +11,7 @@ export const channelSlice = createSlice({
   initialState,
   reducers: {
     activateChannel: (state, { payload }) => {
-      console.log(payload);
-
       if (payload !== null) {
-        // state = { id: payload.id, channelName: payload.channelName }; // これだと動かない
         state.id = payload.id;
         state.channelName = payload.channelName;
       }
